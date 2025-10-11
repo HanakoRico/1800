@@ -1,1 +1,337 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1-800</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="scanlines.css">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+#enterOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 1s ease;
+}
+
+#enterOverlay h1 {
+  font-size: 3em;
+  text-shadow: 0 0 2px white, 0 0 4px white;
+  animation: glowPulse 2s infinite;
+}
+#enterOverlay p {
+  font-size: 1.5em;
+  margin-top: 20px;
+  text-shadow: 0 0 1px white;
+}
+
+.main-section {
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  display: none;
+  transition: opacity 1.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.main-section img {
+  max-width: 250px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 1px white) drop-shadow(0 0 2px white);
+  animation: glowPulse 2s infinite;
+  pointer-events: none;
+}
+
+.header {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 0 2px white, 0 0 4px white;
+  animation: glowPulse 2s infinite;
+  cursor: pointer;
+}
+
+.vertical-names {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 2em;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.vertical-names a {
+  color: #ccc;
+  text-decoration: none;
+  text-shadow: 0 0 2px #444, 0 0 4px #555;
+  animation: glowPulseNames 1.8s infinite;
+  transition: 0.3s ease;
+}
+
+.vertical-names a:hover {
+  text-shadow: 0 0 8px #bbb, 0 0 14px #ddd;
+  transform: scale(1.05);
+}
+
+/* Paste Area Full Width */
+#pasteArea {
+  width: 95vw; /* almost full screen */
+  max-width: none; /* no max width */
+  min-height: 150px;
+  background: #0d0d0d;
+  color: #ccc;
+  border: 1px solid #333;
+  box-shadow: inset 0 0 10px #000;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  padding: 14px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+  outline: none;
+  border-radius: 0; /* optional, stretch fully */
+  margin-bottom: 60px;
+}
+
+@keyframes fadeInPaste {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 1px white) drop-shadow(0 0 2px white);
+    text-shadow: 0 0 1px white, 0 0 2px white;
+  }
+  50% {
+    filter: drop-shadow(0 0 2px white) drop-shadow(0 0 4px white);
+    text-shadow: 0 0 2px white, 0 0 4px white;
+  }
+}
+
+@keyframes glowPulseNames {
+  0%, 100% {
+    text-shadow: 0 0 2px #555, 0 0 4px #777;
+  }
+  50% {
+    text-shadow: 0 0 6px #999, 0 0 10px #bbb;
+  }
+}
+
+@media (max-height: 600px) {
+  .header { font-size: 2.2em; }
+  .vertical-names a { font-size: 1.5em; }
+}
+</style>
+</head>
+<body>
+<div id="enterOverlay">
+  <h1>1-800</h1>
+  <p>Click Anywhere to Enter</p>
+</div>
+
+<div class="main-section">
+  <img src="https://www.pngall.com/wp-content/uploads/18/Adventurous-Random-Anime-Girl-Scene-PNG.png" alt="Anime Girl">
+  <h1 class="header" onclick="window.location.href='https://1800ae.xyz'">1-800 Roster</h1>
+  <div class="vertical-names">
+    <a href="#">Hanako</a>
+    <a href="#">Lost</a>
+    <a href="#">Death</a>
+    <a href="#">Zas</a>
+    <a href="#">Juice</a>
+    <a href="#">Crappi</a>
+  </div>
+
+  <div id="pasteArea" contenteditable="true" spellcheck="false">
+______/\\\_____/\\\\\\\\\________/\\\\\\\________/\\\\\\\____        
+ __/\\\\\\\___/\\\///////\\\____/\\\/////\\\____/\\\/////\\\__       
+  _\/////\\\__\/\\\_____\/\\\___/\\\____\//\\\__/\\\____\//\\\_      
+   _____\/\\\__\///\\\\\\\\\/___\/\\\_____\/\\\_\/\\\_____\/\\\_     
+    _____\/\\\___/\\\///////\\\__\/\\\_____\/\\\_\/\\\_____\/\\\_    
+     _____\/\\\__/\\\______\//\\\_\/\\\_____\/\\\_\/\\\_____\/\\\_   
+      _____\/\\\_\//\\\______/\\\__\//\\\____/\\\__\//\\\____/\\\__  
+       _____\/\\\__\///\\\\\\\\\/____\///\\\\\\\/____\///\\\\\\\/___ 
+        _____\///_____\/////////________\///////________\///////_____ 
+                              We Love 1-800                               
+                 
+
+
+_> CMDS: Provide Karsons's info Info                                                                                           
+
+-_ Poster: Hanako 1-800 / 988
+
+<_ REASON: Being a Dumb fuck
+
+ [Table of Contents:]
+ [Statement: Section 1]
+ [Personal Info: Section 2]
+ [House Info: Section 3]                            ╱|、
+ [Account names: Section 4]                        (˚ˎ 。7  
+ [Police department: Section 5]                     |、˜〵
+ [Credits: Section 6]                               じしˍ,)ノ
+                                              The End Of Karson
+                               
+------------------------------------------------------Section 1:------------------------------------------------------------
+
+                                                  personal statement
+
+Proof: (NSFW his dick pics he sent to minors)
+          ⣴⠶⢦⣤⠶⠶⣄            
+          ⣇⠀⠀⠁⠀⢀⣿
+          ⠙⢧⣄⠀⣠⠞⠁
+             ⠉⠛⠃ Your retard illness was your downfall
+print("My statement:
+Absolute Loser that Likes claiming harm and leaking shit
+Also tried extorting one of my friends when he knows who
+I am Karson is a absolute fucking retard - Hanako")
+
+------------------------------------------------------Section 2:--------------------------------------------------------------
+
+                                                     Personal Info
+_> First Name: chloe
+
+_> Phone Number: +1 918-900-4088                          ooooo   ooooo               .   oooo   o8o                         
+
+_> Age: Unknown                                           `888'   `888'             .o8   `888   `"'                        
+
+_> Country: United States                                  888     888   .ooooo.  .o888oo  888  oooo  ooo. .oo.    .ooooo.  
+
+_> State: Iowa                                             888ooooo888  d88' `88b   888    888  `888  `888P"Y88b  d88' `88b
+
+_> City: Greenfeild                                        888     888  888   888   888    888   888   888   888  888ooo888
+
+_> Zip Code: 46140                                         888     888  888   888   888 .  888   888   888   888  888    .o 
+
+_> Full Address: 503 NW Second St, Greenfield Iowa 46140  o888o   o888o `Y8bod8P'   "888" o888o o888o o888o o888o `Y8bod8P'
+
+------------------------------------------------------Section 3:--------------------------------------------------------------
+
+_> Bathrooms: 1 bathroom                                                                                                                                        
+         |1-800|                                                                                                                                                
+          \   /                                                                                                                                                                      \_/                                                                                                                                                   ║
+      __   /^\   __                                                                                                                                              
+     '  `. \_/ ,'  `                                                                                                                                             
+  Hanako  \/ \/                                                                                                                                                
+     _,--./| |\.--._                                                                                                                                              
+  _,'   _.-\_/-._  `._                                                                                                                                           
+       |   / \   |                                                                                                                                               
+       |  /   \  |                                                                                                                                       
+      /   |   |   \                                                                                                                                              
+    -'    \___/    `-                                                                                                                                            
+_> Size: ~1,213 sq ft                                                                                                                                            
+_> Estimate / Zestimate: ~$179,000                                                                                                                               
+_> Type: Single family home                                                                                                                                       
+_> Year built: 1958                                                                                                                                               
+_> Lot: ~7,767 sq ft                                                                                                                                              
+_> Style / Features: Wood / composition roof / single-family   
+
+------------------------------------------------------Section 4:--------------------------------------------------------------
+
+                                                      Alias's
+_> Chloe
+
+_> Discord: ._.r4wr._._3353
+
+_> TikTok: https://www.tiktok.com/@ph4nt0mgvtz?_t=8osgyzXBcAI&_r=1
+------------------------------------------------------Section 5:--------------------------------------------------------------
+
+                                                    Police Department
+_> Location: 701 West Ormsby Avenue, Suite 301, Louisville, KY 40203  
+
+_> Phone Number: 502-574-7060
+
+------------------------------------------------------Section 6:--------------------------------------------------------------
+                                                        1800
+                                                       The end.
+
+⠀⠀⠀                                         ⠀⠀⠀⠀⠀⠀⠀⣤⢔⣒⠂⣀⣀⣤⣄⣀⠀⠀
+⠀⠀⠀⠀⠀                                          ⠀⣴⣿⠋⢠⣟⡼⣷⠼⣎⣼⢇⣿⣄⠱⣄
+⠀⠀⠀⠀⠀⠀                                          ⠹⣿⡀⣆⠙⠢⠐⠉⠉⣴⣾⣽⢟⡰⠃
+⠀⠀⠀⠀⠀⠀⠀                                          ⠈⢿⣿⣦⠀⠤⢴⣿⠿⢋⣴⡏⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀                                          ⢸⡙⠻⣿⣶⣦⣭⣉⠁⣿⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀                                          ⠀⣷⠀⠈⠉⠉⠉⠉⠇⡟⠀⠀⠀
+⠀⠀⠀⠀⠀                                         ⠀⢀⠀⠀⣘⣦⣀⠀⠀⣀⡴⠊⠀⠀⠀⠀
+⠀⠀⠀⠀                                         ⠀⠀⠈⠙⠛⠛⢻⣿⣿⣿⣿⠻⣧⡀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                          ⠈⠫⣿⠉⠻⣇⠘⠓⠂⣀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                           ⠀⠀⣿⠀⠀⠈⠉⠉⠉⠀⠀
+                                         ⢶⣾⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀
+                                         ⠀⠹⣿⣿⣿⣿⣿⣿⣿⣧⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀
+                                          ⠀⠀⠈⠙⠻⢿⣿⣿⠿⠛⣄⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀                                           ⠀⠀⠀⠀⠀⠀⠀⠘⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀                                           ⠀⠀⠀⣿⡁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                           ⠀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                           ⣿⠀
+  </div>
+</div>
+
+<audio id="bg-music" loop preload="auto">
+  <source src="music/song15.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('enterOverlay');
+  const mainSection = document.querySelector('.main-section');
+  const audio = document.getElementById('bg-music');
+  const paste = document.getElementById('pasteArea');
+
+  overlay.addEventListener('click', () => {
+    overlay.style.opacity = 0;
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      mainSection.style.display = 'flex';
+      setTimeout(() => mainSection.style.opacity = 1, 50);
+    }, 1000);
+    audio.volume = 0;
+    audio.currentTime = 0;
+    audio.play().catch(err => console.log("Playback blocked:", err));
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      if(vol < 1){
+        vol = Math.min(vol + 0.02, 1);
+        audio.volume = vol;
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 50);
+  });
+
+  const titles = ["1","1-","1-8","1-80","1-800","1-80","1-8","1-","1"];
+  let currentTitleIndex = 0;
+  setInterval(() => {
+    document.title = titles[currentTitleIndex];
+    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+  }, 200);
+});
+</script>
+</body>
+</html>
