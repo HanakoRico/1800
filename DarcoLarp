@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1-800</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="scanlines.css">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+#enterOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 1s ease;
+}
+
+#enterOverlay h1 {
+  font-size: 3em;
+  text-shadow: 0 0 2px white, 0 0 4px white;
+  animation: glowPulse 2s infinite;
+}
+#enterOverlay p {
+  font-size: 1.5em;
+  margin-top: 20px;
+  text-shadow: 0 0 1px white;
+}
+
+.main-section {
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  display: none;
+  transition: opacity 1.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.main-section img {
+  max-width: 250px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 1px white) drop-shadow(0 0 2px white);
+  animation: glowPulse 2s infinite;
+  pointer-events: none;
+}
+
+.header {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 0 2px white, 0 0 4px white;
+  animation: glowPulse 2s infinite;
+  cursor: pointer;
+}
+
+.vertical-names {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 2em;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.vertical-names a {
+  color: #ccc;
+  text-decoration: none;
+  text-shadow: 0 0 2px #444, 0 0 4px #555;
+  animation: glowPulseNames 1.8s infinite;
+  transition: 0.3s ease;
+}
+
+.vertical-names a:hover {
+  text-shadow: 0 0 8px #bbb, 0 0 14px #ddd;
+  transform: scale(1.05);
+}
+
+/* Paste Area Full Width */
+#pasteArea {
+  width: 95vw; /* almost full screen */
+  max-width: none; /* no max width */
+  min-height: 150px;
+  background: #0d0d0d;
+  color: #ccc;
+  border: 1px solid #333;
+  box-shadow: inset 0 0 10px #000;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  padding: 14px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+  outline: none;
+  border-radius: 0; /* optional, stretch fully */
+  margin-bottom: 60px;
+}
+
+@keyframes fadeInPaste {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 1px white) drop-shadow(0 0 2px white);
+    text-shadow: 0 0 1px white, 0 0 2px white;
+  }
+  50% {
+    filter: drop-shadow(0 0 2px white) drop-shadow(0 0 4px white);
+    text-shadow: 0 0 2px white, 0 0 4px white;
+  }
+}
+
+@keyframes glowPulseNames {
+  0%, 100% {
+    text-shadow: 0 0 2px #555, 0 0 4px #777;
+  }
+  50% {
+    text-shadow: 0 0 6px #999, 0 0 10px #bbb;
+  }
+}
+
+@media (max-height: 600px) {
+  .header { font-size: 2.2em; }
+  .vertical-names a { font-size: 1.5em; }
+}
+</style>
+</head>
+<body>
+<div id="enterOverlay">
+  <h1>1-800</h1>
+  <p>Click Anywhere to Enter</p>
+</div>
+
+<div class="main-section">
+  <img src="https://www.pngall.com/wp-content/uploads/18/Adventurous-Random-Anime-Girl-Scene-PNG.png" alt="Anime Girl">
+  <h1 class="header" onclick="window.location.href='https://1800ae.xyz'">1-800 Roster</h1>
+  <div class="vertical-names">
+    <a href="#">Hanako</a>
+    <a href="#">Lost</a>
+    <a href="#">Death</a>
+    <a href="#">Zas</a>
+    <a href="#">Juice</a>
+    <a href="#">Crappi</a>
+  </div>
+
+  <div id="pasteArea" contenteditable="true" spellcheck="false">
+ .----------------.  .----------------.  .----------------.  .----------------. 
+| .--------------. || .--------------. || .--------------. || .--------------. |
+| |     __       | || |     ____     | || |     ____     | || |     ____     | |
+| |    /  |      | || |   .' __ '.   | || |   .'    '.   | || |   .'    '.   | |
+| |    `| |      | || |   | (__) |   | || |  |  .--.  |  | || |  |  .--.  |  | |
+| |     | |      | || |   .`____'.   | || |  | |    | |  | || |  | |    | |  | |
+| |    _| |_     | || |  | (____) |  | || |  |  `--'  |  | || |  |  `--'  |  | |
+| |   |_____|    | || |  `.______.'  | || |   '.____.'   | || |   '.____.'   | |
+| |              | || |              | || |              | || |              | |
+| '--------------' || '--------------' || '--------------' || '--------------' |
+ '----------------'  '----------------'  '----------------'  '----------------' 
+|                              1-800 The Real Thugs                            | C = Confirmed
+|                                    Hanako                                    | U = Unconfirmed
+|                                    Death                                     | UK = Unknown
+|                                    Lost                                      | None = None Duh
+|                                    Zox                                       |      
+|                                    Juice                                     |
+|                                    Crappi                                    |
+ ------------------------------------------------------------------------------
+|            Reason: Trying to leak girls after turning 18 and Larped 988      |
+|                          Get Like 1-800 fake ass nigga                       |
+  -----------------------------------------------------------------------------                                      
+|                               Table Of Contents                              |
+|                             Page 1: Proof / Pictures                         |
+|                             Page 2: Personal Info                            |
+|                             Page 3: House Info                               |
+|                             Page 4: Family Info                              |
+|                             Page 5: Online info                              |
+|                             Page 6: Extra Pictures                           |
+|                             Page 7: Credits                                  |
+ ------------------------------------------------------------------------------
+|                                    Page 1:                                   |
+|                                    Proof:                                    |
+| _> https://i.ibb.co/xKmZqbb8/Screenshot-2025-10-14-204811.png                |
+ ------------------------------------------------------------------------------
+|                                    Page 2:                                   |   
+|                                                                              |                                                     
+|                                             .------..------..------..------. |
+| First Name:Dayquan   C                      |1.--. ||8.--. ||0.--. ||0.--. | |
+| Middle: UK                                  | :/\: || :/\: || :/\: || :/\: | |
+| Last Name: Crowe    U                       | (__) || :\/: || :\/: || :\/: | |
+|                                             | '--'1|| '--'8|| '--'0|| '--'0| |
+| Phone Number:+1-540-424-2766 C              `------'`------'`------'`------' |
+|                                                                              |        
+| Address:1008 Second AVE Ext C                                                |                                                                           
+| City: Fredericksbg, Farmville C                                              |
+| State: Virginia  C                                                           |
+| County: Stafford C                                                           |
+| Full Address:1008 Second AVE Ext Farmville, Virginia  C                      |                                      
+|                                                                              |
+| Postal Code:22405 or 23901 U                                                 |
+ ------------------------------------------------------------------------------
+|                                    Page 3:                                   |
+|                                                                              |
+| Number of bedrooms: 3 C                                                      |
+| Number of bathrooms: 2 C                                                     |
+| Size: 1,680 square feet C                                                    |
+| Price:  $279,000 C                                                           |
+| Year Assessed: 2024 C                                                        |
+| Year Built: 1954 C                                                           |
+| Lot: 1,306 square feet C                                                     |
+| Parking: Carport 1 vehicle C                                                 |
+| Style: ranch-style home C                                                    |
+ ------------------------------------------------------------------------------
+|                                    Page 4:                                   |
+| PAGE MIGHT BE FALSE                                            ___    ______ |
+| Mothers name: Jacqueline Nicole Crowe U                       /   |  / ____/ |
+| Fathers name: Christopher Eric Crowe U                       / /| | / __/    |
+| Sibling Name: UK                                            / ___ |/ /___    |
+| Grandmas name: UK                                          /_/  |_/_____/    |
+| Grandpas name: UK                                                            |
+ ------------------------------------------------------------------------------
+|                                    Page 5:                                   |
+|                                                                              |
+| Alias: Draco (Larp) C                                                        |
+| Ip: 24.56.124.126  C                                                         |            
+| Email: UK                                                                    |
+| Discord: vitalcare 1399130392795156591   C                                   |
+| Telegram: None                                                               |
+| Instagram: UK                                                                |
+| Snapchat: UK                                                                 |
+| Other socials: UK                                                            |
+ ------------------------------------------------------------------------------
+|                                    Page 6:                                   |
+|                                Extra pictures                                |
+| _> None                                                                      |
+| _> None                                                                      |
+| _> None                                                                      |
+ ------------------------------------------------------------------------------
+|                                    Page 7:                                   |
+|                                    Credits                                   |
+|                                 Hanako (Owner)                               |                  
+|                                   Lost (Owner)                               |
+|                                 Crappi (Co Owner)                            |
+|                                  Death (Owner)                               |                
+|                                  Juice (Member)                              |
+|                                    Zox (Member)                              |
+ ------------------------------------------------------------------------------
+|              _-o#&&*''''?d:>b\_                                              |
+|           _o/"`''  '',, dMF9MMMMMHo_                                         |
+|        .o&#'        `"MbHMMMMMMMMMMMHo.                                      |
+|      .o"" '         vodM*$&&HMMMMMMMMMM?.                                    |
+|     ,'              $M&ood,~'`(&##MMMMMMH\                                   |
+|    /               ,MMMMMMM#b?#bobMMMMHMMML                                  |
+|   &              ?MMMMMMMMMMMMMMMMM7MMM$R*Hk                                 | 
+|  ?$.            :MMMMMMMMMMMMMMMMMMM/HMMM|`*L                                |
+| |               |MMMMMMMMMMMMMMMMMMMMbMH'   T,                               |
+| $H#:            `*MMMMMMMMMMMMMMMMMMMMb#}'  `?  The end of extortion         |
+| ]MMH#             ""*""""*#MMMMMMMMMMMMM'    -  All Extortion Must Die       |
+| MMMMMb_                   |MMMMMMMMMMMP'     :  We Run The World             |
+| HMMMMMMMHo                 `MMMMMMMMMT       .  #1-800                       |
+| ?MMMMMMMMP                  9MMMMMMMM}       -  #AE                          |
+| -?MMMMMMM                  |MMMMMMMMM?,d-    '  #AP                          |
+|  :|MMMMMM-                 `MMMMMMMT .M|.   :   #SaveTheKids                 |
+|   .9MMM[                    &MMMMM*' `'    .    #NoMoreLeaks                 |
+|    :9MMk                    `MMM#"        -                                  |
+|      &M}                     `          .-                                   |
+|       `&.                             .                                      |
+|         `~,   .                     ./                                       |
+|             . _                  .-                                          |
+|               '`--._,dd###pp=""'                                             |
+ ------------------------------------------------------------------------------
+  </div>
+</div>
+
+<audio id="bg-music" loop preload="auto">
+  <source src="music/song15.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('enterOverlay');
+  const mainSection = document.querySelector('.main-section');
+  const audio = document.getElementById('bg-music');
+  const paste = document.getElementById('pasteArea');
+
+  overlay.addEventListener('click', () => {
+    overlay.style.opacity = 0;
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      mainSection.style.display = 'flex';
+      setTimeout(() => mainSection.style.opacity = 1, 50);
+    }, 1000);
+    audio.volume = 0;
+    audio.currentTime = 0;
+    audio.play().catch(err => console.log("Playback blocked:", err));
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      if(vol < 1){
+        vol = Math.min(vol + 0.02, 1);
+        audio.volume = vol;
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 50);
+  });
+
+  const titles = ["1","1-","1-8","1-80","1-800","1-80","1-8","1-","1"];
+  let currentTitleIndex = 0;
+  setInterval(() => {
+    document.title = titles[currentTitleIndex];
+    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+  }, 200);
+});
+</script>
+</body>
+</html>
