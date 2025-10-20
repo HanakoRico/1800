@@ -34,10 +34,10 @@
       flex-direction: column;
       z-index: 1000;
       transition: opacity 0.6s ease;
+      pointer-events: all;
     }
     #enter-screen.hidden {
       opacity: 0;
-      pointer-events: none;
     }
     .floating {
       animation: float 4s ease-in-out infinite;
@@ -104,7 +104,6 @@
     .links a:hover {
       transform: scale(1.1);
     }
-    audio { display: none; }
     #snow-trail {
       position: fixed;
       top: 0;
@@ -134,10 +133,6 @@
 </head>
 <body>
 
-<audio id="bg-music" loop>
-  <source src="bitcoin.mp3" type="audio/mpeg">
-</audio>
-
 <div id="enter-screen">
   <h2 class="floating-text">Click to Enter</h2>
 </div>
@@ -151,7 +146,7 @@
   <p class="floating-text">I'm fr Hanako from 1-800 <3</p>
   <div class="links">
     <a href="https://discord.gg/keen" target="_blank">
-   <img src="../images/icons8-discord-500.png" alt="Discord" class="floating interactive">
+      <img src="../images/icons8-discord-500.png" alt="Discord" class="floating interactive">
     </a>
     <a href="https://t.me/fraudreins" target="_blank">
       <img src="../images/icons8-telegram-logo-500.png" alt="Telegram" class="floating interactive">
@@ -163,23 +158,36 @@
 </div>
 
 <script>
+  // Animate title
   const titles = ["@", "@9", "@98", "@988", "@988H", "@988Ha", "@988Han", "@988Hana", "@988Hanak", "@988Hanako", "@988Hanak", "@988Hana", "@988Han", "@988Ha", "@988H", "@988", "@98", "@9", "@"];
   let currentTitleIndex = 0;
   setInterval(() => {
     document.title = titles[currentTitleIndex];
     currentTitleIndex = (currentTitleIndex + 1) % titles.length;
   }, 400);
+
   const enterScreen = document.getElementById("enter-screen");
   const profileContent = document.getElementById("profile-content");
-  const audio = document.getElementById("bg-music");
+
   enterScreen.addEventListener("click", () => {
     enterScreen.classList.add("hidden");
+    enterScreen.style.pointerEvents = "none";
     setTimeout(() => {
       enterScreen.style.display = "none";
       profileContent.classList.add("show");
+
+      // Add YouTube iframe for 772 Love
+      const audio = document.createElement("iframe");
+      audio.src = "https://www.youtube.com/embed/MCwlA7lsv8I?autoplay=1&loop=1&playlist=MCwlA7lsv8I";
+      audio.allow = "autoplay; encrypted-media";
+      audio.width = "0";
+      audio.height = "0";
+      audio.style.display = "none";
+      document.body.appendChild(audio);
+
     }, 600);
-    audio.play().catch(err => console.log("Autoplay blocked:", err));
   });
+
   document.addEventListener("mousemove", (e) => {
     const interactiveElements = document.querySelectorAll(".interactive");
     interactiveElements.forEach(el => {
@@ -189,6 +197,8 @@
       el.style.transform = `translateX(${offset}px)`;
     });
   });
+
+  // Snow trail effect
   const snowTrail = document.getElementById("snow-trail");
   document.addEventListener("mousemove", function(e) {
     const snowflake = document.createElement("div");
