@@ -1,64 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>@Lude</title>
+  <link rel="icon" href="images/hanakoicon.png" type="image/x-icon">
   <style>
-    * { cursor: none; user-select: none; box-sizing: border-box; }
-    html,body { height: 100%; margin: 0; }
-
     body {
+      margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
       color: white;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      background: url("https://i.pinimg.com/originals/1d/3c/0e/1d3c0e764313eaac32786ae0c9dc0125.gif") center/cover fixed no-repeat;
+      height: 100vh;
+      background: url("https://i.pinimg.com/originals/1d/3c/0e/1d3c0e764313eaac32786ae0c9dc0125.gif") no-repeat center center fixed;
+      background-size: cover;
       overflow: hidden;
     }
-
     #enter-screen {
       position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,1);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      flex-direction: column;
+      z-index: 1000;
       opacity: 1;
       visibility: visible;
-      pointer-events: auto;       
-      cursor: pointer;           
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+      cursor: pointer;
     }
     #enter-screen.hidden {
       opacity: 0;
       visibility: hidden;
-      pointer-events: none;      
+      pointer-events: none;
     }
-
-    .enter-text {
-      font-size: 2rem;
-      text-shadow: 0 0 12px #fff;
-      animation: float 3s ease-in-out infinite;
+    .floating {
+      animation: float 4s ease-in-out infinite;
+      text-shadow: 0 0 10px white;
     }
     @keyframes float {
-      0%,100% { transform: translateY(0) }
-      50% { transform: translateY(-12px) }
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
     }
-
-    /* PROFILE */
     .profile {
       text-align: center;
       opacity: 0;
       transition: opacity 1s ease;
-      z-index: 2;
-      pointer-events: auto;
+      z-index: 1;
     }
     .profile.show { opacity: 1; }
-
     .profile img {
       width: 200px;
       height: 200px;
@@ -66,126 +65,58 @@
       border-radius: 12px;
       border: 2px solid white;
       box-shadow: 0 0 20px white;
-      display: block;
-      margin: 0 auto;
     }
-    .links { margin-top: 18px; display:flex; justify-content:center; }
-    .links img { height:42px; border-radius:8px; box-shadow:0 0 15px #fff; }
-
-    /* snow trail */
-    #snow-trail { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-    .snowflake { position:absolute; width:6px; height:6px; background:#fff; border-radius:50%; filter:blur(1px); opacity:0.9; animation: fall 1.8s linear forwards; }
-    @keyframes fall { to { transform: translateY(80px); opacity:0 } }
+    .links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .links a img {
+      height: 42px;
+      width: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 15px white;
+      transition: transform 0.2s ease;
+    }
+    .links a:hover img {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
-
-  <!-- Enter overlay -->
-  <div id="enter-screen" aria-hidden="false">
-    <div class="enter-text">Click to Enter</div>
+  <div id="enter-screen">
+    <h2 class="floating">Click to Enter</h2>
   </div>
 
-  <!-- Snow trail -->
-  <div id="snow-trail"></div>
-
-  <!-- Profile content (centered) -->
-  <div class="profile" id="profile">
-    <img src="https://i.pinimg.com/474x/a8/cd/a0/a8cda0252de61ceb96916e27fcd7eb8d.jpg" alt="@Lude">
-    <h1>Lude</h1>
-    <p>She / Her</p>
-    <p>Success is the best revenge</p>
+  <div class="profile" id="profile-content">
+    <img src="https://i.pinimg.com/474x/a8/cd/a0/a8cda0252de61ceb96916e27fcd7eb8d.jpg" alt="@Lude" class="floating">
+    <h1 class="floating">@Lude</h1>
+    <p class="floating">She / Her</p>
+    <p class="floating">Success is the best revenge</p>
     <div class="links">
-      <a href="https://discord.com/users/1321220303120105553" target="_blank" rel="noopener">
+      <a href="https://discord.com/users/1321220303120105553" target="_blank">
         <img src="../images/icons8-discord-500.png" alt="Discord">
       </a>
     </div>
   </div>
 
   <script>
-    const log = (...args) => { try { console.log('[ENTER-FIX]', ...args); } catch(e){} };
+    const enterScreen = document.getElementById("enter-screen");
+    const profileContent = document.getElementById("profile-content");
 
-    const enter = document.getElementById('enter-screen');
-    const profile = document.getElementById('profile');
-
-
-    const audio = document.createElement('audio');
-    audio.preload = 'auto';
-    let hasDirectAudio = false; 
-
-    const makeYT = () => {
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.width = 0; iframe.height = 0;
-      iframe.allow = 'autoplay; encrypted-media';
-      iframe.src = 'https://www.youtube.com/embed/b-TD5zCzB3E?autoplay=1&loop=1&playlist=b-TD5zCzB3E';
-      document.body.appendChild(iframe);
-      log('YouTube iframe appended (fallback).');
-    };
-
-    function enterSite(evt) {
-      log('enterSite triggered by event:', evt && evt.type);
-      removeListeners();
-      enter.classList.add('hidden');
-      enter.setAttribute('aria-hidden','true');
-      const onTransitionEnd = () => {
-        enter.removeEventListener('transitionend', onTransitionEnd);
-        profile.classList.add('show');
-        if (hasDirectAudio && audio.src) {
-          audio.play().then(() => log('audio.play() succeeded')).catch(err => log('audio.play() failed:', err));
-        } else {
-          try { makeYT(); } catch(e) { log('iframe fallback failed', e); }
-        }
-      };
-      enter.addEventListener('transitionend', onTransitionEnd);
-      setTimeout(onTransitionEnd, 800); // fallback trigger in case transitionend isn't fired
-    }
-
-    function addListeners() {
-      enter.addEventListener('click', enterSite, { once: true });
-      enter.addEventListener('touchstart', enterSite, { once: true });
-      // also allow keyboard enter/space to dismiss
-      document.addEventListener('keydown', keyHandler, { once: true });
-      // fallback global click if something stops propagation
-      document.body.addEventListener('click', bodyClickHandler, { once: true, capture: true });
-      log('listeners attached');
-    }
-    function removeListeners() {
-      enter.removeEventListener('click', enterSite);
-      enter.removeEventListener('touchstart', enterSite);
-      document.removeEventListener('keydown', keyHandler);
-      document.body.removeEventListener('click', bodyClickHandler, true);
-      log('listeners removed');
-    }
-
-    function keyHandler(e) {
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
-        enterSite(e);
-      } else {
-        document.addEventListener('keydown', keyHandler, { once: true });
-      }
-    }
-
-    function bodyClickHandler(e) {
-      if (!enter.classList.contains('hidden')) {
-        log('body click handler fired (capture).');
-        enterSite(e);
-      }
-    }
-
-    const snowTrail = document.getElementById('snow-trail');
-    document.addEventListener('mousemove', function(e) {
-      const f = document.createElement('div');
-      f.className = 'snowflake';
-      f.style.left = (e.pageX - 3) + 'px';
-      f.style.top = (e.pageY - 3) + 'px';
-      snowTrail.appendChild(f);
-      setTimeout(()=> f.remove(), 1600);
+    enterScreen.addEventListener("click", () => {
+      enterScreen.classList.add("hidden");
+      setTimeout(() => {
+        profileContent.classList.add("show");
+        const audio = document.createElement("iframe");
+        audio.src = "https://www.youtube.com/embed/b-TD5zCzB3E?autoplay=1&loop=1&playlist=b-TD5zCzB3E";
+        audio.allow = "autoplay; encrypted-media";
+        audio.width = "0";
+        audio.height = "0";
+        audio.style.display = "none";
+        document.body.appendChild(audio);
+      }, 600);
     });
-    enter.style.pointerEvents = 'auto';
-    enter.style.cursor = 'pointer';
-    addListeners();
-    log('script loaded: overlay visible. Try clicking, tapping or pressing Enter/Space.');
-
   </script>
 </body>
 </html>
