@@ -170,6 +170,11 @@
       width: 45px;
       height: 45px;
     }
+
+    /* Fade-in for audio */
+    audio {
+      transition: volume 3s ease;
+    }
   </style>
 </head>
 <body>
@@ -221,18 +226,29 @@
       const main = document.getElementById('mainContent');
       main.classList.add('fade-in');
 
-      const audio = document.createElement('iframe');
-      audio.src = "https://youtu.be/40bhY_FmrqA";
-      audio.width = "0";
-      audio.height = "0";
-      audio.allow = "autoplay; encrypted-media";
-      audio.style.display = "none";
-      document.body.appendChild(audio);
+      const iframe = document.createElement('iframe');
+      iframe.src = "https://www.youtube.com/embed/40bhY_FmrqA?autoplay=1&loop=1&playlist=40bhY_FmrqA";
+      iframe.width = "0";
+      iframe.height = "0";
+      iframe.allow = "autoplay; encrypted-media";
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+
+      // Optional fade-in illusion (delay before full volume)
+      const fakeAudio = new Audio("https://www.youtube.com/embed/40bhY_FmrqA");
+      fakeAudio.volume = 0;
+      const fadeInterval = setInterval(() => {
+        if (fakeAudio.volume < 1) {
+          fakeAudio.volume += 0.05;
+        } else {
+          clearInterval(fadeInterval);
+        }
+      }, 200);
 
       startTyping();
     }
 
-    const text = "“The end of Extortion”";
+    const text = "“#1-800 Ending Extortion...”";
     const quoteElement = document.getElementById("quote");
     let i = 0;
     let deleting = false;
