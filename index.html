@@ -1,270 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1-800 Roster</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=MedievalSharp&family=Playfair+Display:ital@1&family=Dancing+Script&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://qu.ax/CKJCM.png" type="image/png">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      font-family: 'MedievalSharp', cursive;
-      background: radial-gradient(circle at center, #000 0%, #111 100%);
-      background-size: 400% 400%;
-      animation: ripple 20s ease infinite;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    @keyframes ripple {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      cursor: pointer;
-    }
-
-    .overlay h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 4em;
-      color: white;
-      margin-bottom: 20px;
-    }
-
-    .overlay button {
-      font-size: 1.5em;
-      padding: 0.6em 1.2em;
-      background: black;
-      color: white;
-      border: none;
-      font-family: 'MedievalSharp', cursive;
-    }
-
-    .content {
-      opacity: 0;
-      filter: blur(10px);
-      transition: all 2s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .fade-in { opacity: 1; filter: blur(0); }
-
-    .header h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 5em;
-      text-shadow: 2px 2px 6px #000;
-    }
-
-    .quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4em;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.7);
-      white-space: nowrap;
-      border-right: 2px solid rgba(255, 255, 255, 0.6);
-      overflow: hidden;
-      display: inline-block;
-      margin: 1em 0 2em 0;
-      height: 1.5em;
-    }
-
-    .avatars {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 50px;
-      max-width: 1200px;
-    }
-
-    .avatar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease;
-    }
-
-    .avatar:hover { transform: scale(1.05); }
-
-    .avatar .image {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background-size: cover;
-      background-position: center;
-      border: 3px solid #fff;
-      position: relative;
-      overflow: visible;
-    }
-
-    .avatar .image::before {
-      content: "";
-      position: absolute;
-      top: -10px; left: -10px;
-      width: 150px; height: 150px;
-      border-radius: 50%;
-      background: conic-gradient(lightgray, gray, lightgray);
-      animation: spin 6s linear infinite;
-      z-index: -1;
-      filter: blur(8px);
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .avatar span {
-      margin-top: 12px;
-      font-size: 1.3em;
-      color: white;
-      text-shadow: 1px 1px 2px #000;
-      text-transform: uppercase;
-    }
-
-    .avatar .role {
-      margin-top: 3px;
-      font-size: 0.9em;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .telegram-link {
-      margin-top: 1.5em;
-      font-size: 1.3em;
-      color: white;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: 'Dancing Script', cursive;
-    }
-
-    .telegram-link img {
-      width: 45px;
-      height: 45px;
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1-800</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="scanlines.css">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#enterOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 1s ease;
+}
+#enterOverlay h1 {
+  font-size: 3em;
+  text-shadow: 0 0 2px white, 0 0 4px white;
+  animation: glowPulse 2s infinite;
+}
+#enterOverlay p {
+  font-size: 1.5em;
+  margin-top: 20px;
+  text-shadow: 0 0 1px white;
+}
+.main-section {
+  text-align: center;
+  opacity: 0;
+  display: none;
+  transition: opacity 1.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-section img {
+  max-width: 250px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 1px white) drop-shadow(0 0 2px white);
+  animation: glowPulse 2s infinite;
+  pointer-events: none;
+}
+.header {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 0 2px white, 0 0 4px white;
+  animation: glowPulse 2s infinite;
+  cursor: pointer;
+}
+.vertical-names {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 2em;
+  align-items: center;
+}
+.vertical-names a {
+  color: #ccc;
+  text-decoration: none;
+  text-shadow: 0 0 2px #444, 0 0 4px #555;
+  animation: glowPulseNames 1.8s infinite;
+  transition: 0.3s ease;
+}
+.vertical-names a:hover {
+  text-shadow: 0 0 8px #bbb, 0 0 14px #ddd;
+  transform: scale(1.05);
+}
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 1px white) drop-shadow(0 0 2px white);
+    text-shadow: 0 0 1px white, 0 0 2px white;
+  }
+  50% {
+    filter: drop-shadow(0 0 2px white) drop-shadow(0 0 4px white);
+    text-shadow: 0 0 2px white, 0 0 4px white;
+  }
+}
+@keyframes glowPulseNames {
+  0%, 100% {
+    text-shadow: 0 0 2px #555, 0 0 4px #777;
+  }
+  50% {
+    text-shadow: 0 0 6px #999, 0 0 10px #bbb;
+  }
+}
+@media (max-height: 600px) {
+  .header { font-size: 2.2em; }
+  .vertical-names a { font-size: 1.5em; }
+}
+</style>
 </head>
 <body>
-  <div class="overlay" id="overlay" onclick="enterSite()">
-    <h1>#1-800 runs the world</h1>
-    <button>Click to Enter</button>
+<div id="enterOverlay">
+  <h1>1-800</h1>
+  <p>Click Anywhere to Enter</p>
+</div>
+<div class="main-section">
+  <img src="https://i.pinimg.com/originals/cd/b3/7f/cdb37fffab3771d4218bc1e97d6fcac8.gif" alt="Anime Girl">
+  <h1 class="header" onclick="window.location.href='https://1800ae.xyz/Work.html'">1-800 Roster</h1>
+  <div class="vertical-names">
+    <a href="https://doxbin.com/user/malissa">Hanako</a>
+    <a href="https://doxbin.com/LOST1800">Lost</a>
+    <a href="https://discord.gg/keen">Sai</a>
+    <a href="https://discord.gg/Keen">Crappi</a>
+    <a href="https://discord.gg/zll">Ume</a>
+    <a href="https://discord.gg/keen">Scraped</a>
   </div>
-
-  <div class="content" id="mainContent">
-    <div class="header"><h1>1-800 Roster</h1></div>
-    <p class="quote" id="quote"></p>
-
-    <div class="avatars">
-      <div class="avatar">
-        <div class="image" style="background-image: url('https://i.pinimg.com/1200x/70/22/a0/7022a04c3a36291f66e6df375ca659b3.jpg');"></div>
-        <span>Hanako</span><div class="role">Owner</div>
-      </div>
-      <div class="avatar">
-        <div class="image" style="background-image: url('https://i.pinimg.com/736x/a2/5b/89/a25b8936e3425f089b194b8ab2196cf5.jpg');"></div>
-        <span>Lost</span><div class="role">Co Owner</div>
-      </div>
-      <div class="avatar">
-        <div class="image" style="background-image: url('https://i.pinimg.com/736x/1a/62/b1/1a62b18ded16236410374df5225fe533.jpg');"></div>
-        <span>Shy</span><div class="role">Co Owner</div>
-      </div>
-      <div class="avatar">
-        <div class="image" style="background-image: url('https://i.pinimg.com/736x/f3/d7/bf/f3d7bf07efe3432905299608f7acddb8.jpg');"></div>
-        <span>Ume</span><div class="role">Soldier</div>
-      </div>
-      <div class="avatar">
-        <div class="image" style="background-image: url('https://i.pinimg.com/736x/39/2c/c3/392cc3e851cdda4faeea5eeb4d5a3ae6.jpg');"></div>
-        <span>Crappi</span><div class="role">Soldier</div>
-      </div>
-      <div class="avatar">
-        <div class="image" style="background-image: url('https://i.pinimg.com/736x/2f/a7/f9/2fa7f90e60eb760bcc2a6cce6bb0c943.jpg');"></div>
-        <span>Scrapted</span><div class="role">Soldier</div>
-      </div>
-    </div>
-
-    <a href="https://t.me/com1800" target="_blank" rel="noopener" class="telegram-link">
-      <span>Telegram channel</span>
-      <img src="https://qu.ax/vJpOB.png" alt="Telegram channel" />
-    </a>
-  </div>
-
-  <script>
-    function enterSite() {
-      document.getElementById('overlay').style.display = 'none';
-      const main = document.getElementById('mainContent');
-      main.classList.add('fade-in');
-
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://www.youtube.com/embed/40bhY_FmrqA?autoplay=1&loop=1&playlist=40bhY_FmrqA";
-      iframe.width = "0";
-      iframe.height = "0";
-      iframe.allow = "autoplay; encrypted-media";
-      iframe.style.display = "none";
-      document.body.appendChild(iframe);
-
-      const fakeAudio = new Audio("https://www.youtube.com/embed/40bhY_FmrqA");
-      fakeAudio.volume = 0;
-      const fadeInterval = setInterval(() => {
-        if (fakeAudio.volume < 1) {
-          fakeAudio.volume += 0.05;
-        } else {
-          clearInterval(fadeInterval);
-        }
-      }, 200);
-
-      startTyping();
-    }
-
-    const text = "“ Spreading joy, not chaos | #1-800 ”";
-    const quoteElement = document.getElementById("quote");
-    let i = 0;
-    let deleting = false;
-
-    function startTyping() {
-      if (!deleting && i < text.length) {
-        quoteElement.textContent = text.substring(0, i + 1);
-        i++;
-        setTimeout(startTyping, 100);
-      } else if (deleting && i > 0) {
-        quoteElement.textContent = text.substring(0, i - 1);
-        i--;
-        setTimeout(startTyping, 60);
-      } else if (i === text.length) {
-        deleting = true;
-        setTimeout(startTyping, 1000);
-      } else if (i === 0 && deleting) {
-        deleting = false;
-        setTimeout(startTyping, 1000);
+</div>
+<audio id="bg-music" loop preload="auto">
+  <source src="music/song14.mp3" type="audio/mpeg">
+</audio>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('enterOverlay');
+  const mainSection = document.querySelector('.main-section');
+  const audio = document.getElementById('bg-music');
+  overlay.addEventListener('click', () => {
+    overlay.style.opacity = 0;
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      mainSection.style.display = 'flex';
+      setTimeout(() => mainSection.style.opacity = 1, 50);
+    }, 1000);
+    audio.volume = 0;
+    audio.currentTime = 0;
+    audio.play().catch(err => console.log("Playback blocked:", err));
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      if(vol < 1){
+        vol = Math.min(vol + 0.02, 1);
+        audio.volume = vol;
+      } else {
+        clearInterval(fadeIn);
       }
-    }
-  </script>
+    }, 50);
+  });
+  const titles = ["1","1-","1-8","1-80","1-800","1-80","1-8","1-","1"];
+  let currentTitleIndex = 0;
+  setInterval(() => {
+    document.title = titles[currentTitleIndex];
+    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+  }, 200);
+});
+</script>
 </body>
 </html>
